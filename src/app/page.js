@@ -14,15 +14,16 @@ import { useChronycData } from "@/context/ChronycProvider";
 export default function Home() {
   const { wsConnected } = useChronycData();
 
-  const [activePage, setActivePage] = useState("clock");
+  const [activePage, setActivePage] = useState(1);
+  const PORT = process.env.PORT
 
   const renderSubpage = () => {
     switch (activePage) {
-      case "tracking":
-        return <TrackingPage />;
-      case "client":
+      case 3:
         return <ClientPage />;
-      case "clock":
+      case 2:
+        return <TrackingPage />;
+      case 1:
         return <ClockStatusPage />;
       default:
         return <ClockStatusPage />;

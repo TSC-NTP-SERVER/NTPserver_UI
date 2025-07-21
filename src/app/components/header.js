@@ -1,25 +1,7 @@
 "use client";
-
-import { useChronycData } from "@/context/ChronycProvider";
 import React from "react";
-
-function formatDateTime(datetimeStr, timeZone = "UTC") {
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    timeZone,
-    hour12: false,
-  };
-
-  return new Intl.DateTimeFormat("en-US", options).format(
-    new Date(datetimeStr)
-  );
-}
+import { useChronycData } from "@/context/ChronycProvider";
+import { formatDateTime } from "../func/formatDate.js"
 
 export function Header() {
   const { trackingData, timeData } = useChronycData();
@@ -34,7 +16,7 @@ export function Header() {
       <section className="flex flex-wrap">
         <div className="w-1/6 p-4 flex justify-start">
           <div className="pl-6 p-4 border rounded-xl w-80 font-extrabold">
-            STRATUM : {trackingData?.stratum}
+            STRATUM : {trackingData?.stratum ?? "-"}
           </div>
         </div>
 

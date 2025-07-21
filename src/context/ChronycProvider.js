@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const ChronycContext = createContext();
+const PORT = process.env.NEXT_PUBLIC_PORT
 
 export const ChronycProvider = ({ children }) => {
   const [trackingData, setTrackingData] = useState(null);
@@ -12,7 +13,7 @@ export const ChronycProvider = ({ children }) => {
   const [wsConnected, setWsConnected] = useState(false);
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:4000");
+    const ws = new WebSocket(`ws://localhost:${PORT}`);
 
     ws.onopen = () => {
       console.log("WebSocket connected");
@@ -90,5 +91,4 @@ export const ChronycProvider = ({ children }) => {
   );
 };
 
-// Exportable hook
 export const useChronycData = () => useContext(ChronycContext);

@@ -2,6 +2,7 @@ import { useChronycData } from "@/context/ChronycProvider";
 
 export const ClockStatusPage = () => {
   const { timeData, trackingData } = useChronycData();
+  const hiddenKeys = ["_id", "Timestamp"];
 
   if (!timeData && !trackingData) {
     return (
@@ -10,8 +11,6 @@ export const ClockStatusPage = () => {
       </div>
     );
   }
-
-  const hiddenKeys = ["_id", "Timestamp"];
 
   return (
     <div className="space-y-6">
