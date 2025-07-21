@@ -4,9 +4,10 @@ export const ClientPage = () => {
   const { clientData } = useChronycData();
   const hiddenKeys = ["_id", "Timestamp"];
 
-  const columns = Object.keys(clientData[0]).filter(
-    (key) => !hiddenKeys.includes(key)
-  );
+  const columns =
+    clientData.length > 0
+      ? Object.keys(clientData[0]).filter((key) => !hiddenKeys.includes(key))
+      : [];
 
   if (!clientData || clientData.length === 0) {
     return (
